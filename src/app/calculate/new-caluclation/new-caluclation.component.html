@@ -24,12 +24,22 @@
       <mat-card-actions fxLayoutAlign="center">
         <button type="submit" mat-button [disabled]="f.invalid">Start</button>
       </mat-card-actions>
+      <mat-card-title fxLayoutAlign="center" class="result">
+        Result:
+        <span *ngIf="!result">_ _</span>
+        {{ result }}
+      </mat-card-title>
     </mat-card>
   </form>
-  <div>Result: {{ result }}</div>
+  <h1 class="result">Previous results</h1>
   <div *ngFor="let calc of calculations" fxLayout="column">
     <div>
-      {{ calc.date.toDate() | date }} | {{ calc.result }}
+      <span [ngStyle]="{ width: '200px', display: 'inline-block' }">
+        <strong>Date:</strong>
+        {{ calc.date.toDate() | date }}
+      </span>
+      <strong>Result:</strong>
+      {{ calc.result }}
       <br />
     </div>
   </div>

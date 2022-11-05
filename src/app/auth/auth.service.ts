@@ -19,7 +19,7 @@ export class AuthService {
       if (user) {
         this.isAuthenticated = true
         this.authChange.next(true)
-        this.router.navigate(['/welcome'])
+        this.router.navigate([''])
       } else {
         //  this.calculateService.cancelSubscriptions();
         this.authChange.next(false)
