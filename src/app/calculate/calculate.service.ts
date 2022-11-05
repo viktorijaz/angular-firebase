@@ -1,7 +1,7 @@
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Injectable } from "@angular/core";
-import { tap, map } from 'rxjs'
-import { Subject } from 'rxjs';
+import { Subject, map, Observable } from 'rxjs'
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Calculation } from "./calculation.model";
 
 @Injectable()
@@ -11,10 +11,14 @@ export class CalculateService {
     private currentCalculation: Calculation;
     calculationsChanged = new Subject<Calculation[]>();
 
-    constructor(private db: AngularFirestore) { }
+    constructor(private db: AngularFirestore, private http: HttpClient) { }
 
     getAvailableCalculations() {
         return this.availableCalculations.slice();
+    }
+
+    loadFibonacci(fib: number): Observable<number> {
+        return this.http.get<number>(`https://us-central1-ng-syncvr.cloudfunctions.net/calculation/${fib}`);
     }
 
     fetchAvailableCalculations() {

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { CalculateService } from '../calculate.service';
-import { Calculation } from '../calculation.model';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable, Subscription } from 'rxjs';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { CalculateService } from '../calculate.service';
+import { Calculation } from '../calculation.model';
 
 
 @Component({
@@ -11,9 +12,10 @@ import { Observable, Subscription } from 'rxjs';
   styleUrls: ['./new-caluclation.component.css']
 })
 export class NewCaluclationComponent implements OnInit {
-
+  calculateForm: FormGroup;
   calculations: Calculation[];
   calculationSubscription: Subscription;
+  result: number;
   constructor(private calculateService: CalculateService, private db: AngularFirestore) { }
 
   ngOnInit(): void {
@@ -22,6 +24,15 @@ export class NewCaluclationComponent implements OnInit {
     );
     this.calculateService.fetchAvailableCalculations();
 
-    //  this.calculations = this.calculateService.getAvailableCalculations();
+    this.calculateForm = new FormGroup({
+      fibonacci: new FormControl('', {
+        validators: [Validators.required, Validators.min(0)]
+      })
+    });
+  }
+
+  onSubmit() {
+    console.log("on Submit")
+    this.calculateService.loadFibonacci(this.calculateForm.value.fibonacci).subscribe(res => this.result = res);
   }
 }

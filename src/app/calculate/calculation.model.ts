@@ -1,5 +1,7 @@
+import { Timestamp } from "firebase-admin/firestore";
+
 export interface Calculation {
     id: string;
-    date: Date;
+    date: Timestamp;
     result: number;
 }
