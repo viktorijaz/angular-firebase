@@ -1,9 +1,0 @@
-<h1>My Products</h1>
-<form (ngSubmit)="onAddProduct(f)" #f="ngForm">
-  <input type="text" [(ngModel)]="productName" name="productName" required>
-  <button mat-icon-button color="accent" type="submit">
-    <mat-icon>home</mat-icon>Add Product
-  </button>
-</form>
-<app-product (productClicked)="onRemoveProduct(product)" *ngFor="let product of previousCalls" [productName]="product">
-</app-product>

@@ -1,23 +1,36 @@
 <section class="new-training" fxLayout="column" fxLayoutAlign="center">
-    <form (ngSubmit)="true" #f="ngForm"  (ngSubmit)="onSubmit()" [formGroup]="calculateForm">
-        <mat-card fxFlex.xs="100%" fxFlex="400px">
-            <mat-card-title fxLayoutAlign="center">Calculate Fibonacci!</mat-card-title>
-            <mat-card-content fxLayoutAlign="center">
-                <mat-form-field>
-                    <input type="number" matInput placeholder="Enter a number" formControlName="fibonacci">
-                    <mat-hint>Please enter a positive number.</mat-hint>
-                    <mat-error>Invalid or missing number.</mat-error>
-                </mat-form-field>
-            </mat-card-content>
-            <mat-card-actions fxLayoutAlign="center">
-                <button type="submit" mat-button [disabled]="f.invalid">Start</button>
-            </mat-card-actions>
-        </mat-card>
-    </form>
+  <form
+    (ngSubmit)="(true)"
+    #f="ngForm"
+    (ngSubmit)="onSubmit()"
+    [formGroup]="calculateForm"
+  >
+    <mat-card fxFlex.xs="100%" fxFlex="400px">
+      <mat-card-title fxLayoutAlign="center">
+        Calculate Fibonacci!
+      </mat-card-title>
+      <mat-card-content fxLayoutAlign="center">
+        <mat-form-field>
+          <input
+            type="number"
+            matInput
+            placeholder="Enter a number"
+            formControlName="fibonacci"
+          />
+          <mat-hint>Please enter a positive number.</mat-hint>
+          <mat-error>Invalid or missing number.</mat-error>
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-actions fxLayoutAlign="center">
+        <button type="submit" mat-button [disabled]="f.invalid">Start</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+  <div>Result: {{ result }}</div>
+  <div *ngFor="let calc of calculations" fxLayout="column">
     <div>
-        Result: {{result}}
+      {{ calc.date.toDate() | date }} | {{ calc.result }}
+      <br />
     </div>
-     <div *ngFor="let calc of calculations" fxLayout="column">
-        <div> {{ calc.date.toDate() | date }} | {{ calc.result }} <br></div>
-    </div>
+  </div>
 </section>

@@ -9,7 +9,6 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-  // maxDate;
 
   constructor(private authService: AuthService) { }
 
