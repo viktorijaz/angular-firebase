@@ -32,8 +32,8 @@ The whole project is deployed here: [link](https://ng-syncvr.firebaseapp.com/)
 ## To do
 This is only a basic show of the Angular/Firebase capabilities. Further improvements:
 
--Encapsulate Calculate functionality within separate module and lazy load it
--Introduce Repository pattern to deal with Firebase Databases
--Introduce more Component/ Service tests
--Dockerize the app/ Include it in a monorepo with Sharable components
+- Encapsulate Calculate functionality within separate module and lazy load it
+- Introduce Repository pattern to deal with Firebase Databases
+- Introduce more Component/ Service tests
+- Dockerize the app/ Include it in a monorepo with Sharable components
 
