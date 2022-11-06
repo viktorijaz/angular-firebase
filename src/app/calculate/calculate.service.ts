@@ -8,8 +8,6 @@ import { apiEndpoint, collectionName } from '../constants'
 @Injectable()
 export class CalculateService {
   private availableCalculations: Calculation[] = []
-
-  private currentCalculation: Calculation
   calculationsChanged = new Subject<Calculation[]>()
 
   constructor(private db: AngularFirestore, private http: HttpClient) {}
@@ -43,9 +41,5 @@ export class CalculateService {
   }
   getCompletedOrCancelledExercises(): Calculation[] {
     return this.availableCalculations.slice()
-  }
-
-  private addDataToDatabase(calculation: Calculation) {
-    this.db.collection(collectionName).add(calculation)
   }
 }

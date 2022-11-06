@@ -21,18 +21,32 @@
           <mat-error>Invalid or missing number.</mat-error>
         </mat-form-field>
       </mat-card-content>
-      <mat-card-actions fxLayoutAlign="center">
+      <mat-card-actions fxLayoutAlign="center" [style.margin-bottom]="'0px'">
         <button type="submit" mat-button [disabled]="f.invalid">Start</button>
       </mat-card-actions>
-      <mat-card-title fxLayoutAlign="center" class="result">
+      <div class="spinner_loading" fxLayout fxLayoutAlign="center center">
+        <div *ngIf="loading">
+          <div>
+            <mat-progress-spinner
+              diameter="20"
+              mode="indeterminate"
+            ></mat-progress-spinner>
+          </div>
+        </div>
+      </div>
+      <mat-card-title
+        fxLayoutAlign="center"
+        class="result"
+        [style.margin-top]="'5px'"
+      >
         Result:
         <span *ngIf="!result">_ _</span>
         {{ result }}
       </mat-card-title>
     </mat-card>
   </form>
-  <h1 class="result">Previous results</h1>
-  <div *ngFor="let calc of calculations" fxLayout="column">
+  <h1 class="result">Previous 10 results</h1>
+  <div *ngFor="let calc of calculations.slice(10)" fxLayout="column">
     <div>
       <span [ngStyle]="{ width: '200px', display: 'inline-block' }">
         <strong>Date:</strong>

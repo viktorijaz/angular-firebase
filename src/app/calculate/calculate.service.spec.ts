@@ -1,9 +1,10 @@
 import { fakeAsync, inject, TestBed } from '@angular/core/testing'
 import { HttpClientModule } from '@angular/common/http'
-import { Observable, of } from 'rxjs'
+import { of } from 'rxjs'
 import { HttpClient } from '@angular/common/http'
 import { AngularFirestore } from '@angular/fire/compat/firestore'
 import { CalculateService } from './calculate.service'
+import { apiEndpoint } from '../constants'
 
 const mockResponse = 3
 
@@ -32,7 +33,7 @@ describe('Calculate Fibonacci Service', () => {
 
   it('loadFibonacci function claculates correct number', fakeAsync(
     inject([CalculateService], (calculateService: CalculateService) => {
-      const expectedUrl = `https://us-central1-ng-syncvr.cloudfunctions.net/calculation/${fibNumber}`
+      const expectedUrl = `${apiEndpoint}/${fibNumber}`
 
       calculateService.loadFibonacci(fibNumber).subscribe((res: any) => {
         expect(mockHttp.get).toHaveBeenCalledWith(expectedUrl)

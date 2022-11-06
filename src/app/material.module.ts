@@ -10,6 +10,7 @@ import { MatCardModule } from '@angular/material/card'
 import { MatTableModule } from '@angular/material/table'
 import { MatPaginatorModule } from '@angular/material/paginator'
 import { MatTabsModule } from '@angular/material/tabs'
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 
 @NgModule({
   imports: [
@@ -24,6 +25,7 @@ import { MatTabsModule } from '@angular/material/tabs'
     MatTableModule,
     MatPaginatorModule,
     MatTabsModule,
+    MatProgressSpinnerModule,
   ],
   exports: [
     MatButtonModule,
@@ -37,6 +39,7 @@ import { MatTabsModule } from '@angular/material/tabs'
     MatTableModule,
     MatPaginatorModule,
     MatTabsModule,
+    MatProgressSpinnerModule,
   ],
 })
 export class MaterialModule {}

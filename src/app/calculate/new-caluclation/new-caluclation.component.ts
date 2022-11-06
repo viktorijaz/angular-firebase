@@ -15,6 +15,7 @@ export class NewCaluclationComponent implements OnInit {
   calculations: Calculation[]
   calculationSubscription: Subscription
   result: number
+  loading: boolean
   constructor(
     private calculateService: CalculateService,
     private db: AngularFirestore,
@@ -34,10 +35,12 @@ export class NewCaluclationComponent implements OnInit {
   }
 
   onSubmit() {
+    this.loading = true
     this.calculateService
       .loadFibonacci(this.calculateForm.value.fibonacci)
       .subscribe((res) => {
         this.result = res
+        this.loading = false
         console.log(res)
       })
   }

@@ -1,4 +1,10 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core'
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  ViewChild,
+  AfterViewInit,
+} from '@angular/core'
 import { MatTableDataSource } from '@angular/material/table'
 import { MatPaginator } from '@angular/material/paginator'
 import { MatSort } from '@angular/material/sort'
@@ -12,7 +18,7 @@ import { CalculateService } from '../calculate.service'
   templateUrl: './history.component.html',
   styleUrls: ['./history.component.css'],
 })
-export class HistoryComponent implements OnInit, AfterViewInit {
+export class HistoryComponent implements OnInit, OnDestroy, AfterViewInit {
   displayedColumns = ['date', 'result']
   dataSource = new MatTableDataSource<Calculation>()
   private changedSubscription: Subscription
@@ -38,5 +44,9 @@ export class HistoryComponent implements OnInit, AfterViewInit {
 
   doFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase()
+  }
+
+  ngOnDestroy() {
+    this.changedSubscription.unsubscribe()
   }
 }
